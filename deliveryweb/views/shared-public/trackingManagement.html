@@ -1,0 +1,59 @@
+{% extends "../layout/layoutClear.html" %}
+
+{% block contentWithoutMargin %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC68nmXUGm6R5kmvtlpgEf-RZ1mEifbSPk&libraries=places" type="text/javascript"></script>
+  <div id="trackingManagementContainerMount"></div>
+{% endblock %}
+
+{% block scripts %}
+	<script src="/bundles/sharedPublic.js?v={{version}}"></script>
+  <style>
+  	.map{
+		width: 100%;
+		height: calc(100vh - 55px);
+    }
+    .mini_popUp-img {
+	    border-radius: 50%;
+	    width: 50px;
+	}
+
+	.mini_popUp-wrapper {
+	    display: flex;
+	}
+
+	.mini_popUp-body-wrapper-helper p {
+	    margin: 0;
+	    margin-bottom: 2px;
+	    font-size: 13px;
+	    font-weight: 400;
+	}
+
+	.mini_popUp-img-wrapper-helper {
+	    margin-right: 10px;
+	}
+
+	.mini_popUp-body-wrapper-helper h2 {
+	    margin-bottom: 4px;
+	    font-size: 16px;
+	}
+
+	.mini_popUp-btn {
+	    background: #e3e3e3;
+	    padding: 6px 12px;
+	    width: 100px;
+	    text-align: center;
+	    display: block;
+	    border-radius: 14px;
+	    margin-top: 15px;
+	    margin-bottom: 5px;
+	    cursor: pointer;
+	}
+	.mini_popUp-btn:hover {
+	    background: #cecece;
+	}
+
+	.mini_popUp-body-wrapper {
+	    min-width: 154px;
+	}
+  </style>
+{% endblock %}

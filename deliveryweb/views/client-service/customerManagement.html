@@ -1,0 +1,88 @@
+{% extends "../layout/layout.html" %}
+
+{% block content %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbp1pZlN1yas1HUWw3wV_df_TjuoHknRM&libraries=places" type="text/javascript"></script>
+  <div id="customerManagementContainerMount"></div>
+{% endblock %}
+
+
+
+{% block scripts %}
+  <script src="/bundles/clientService.js?v={{version}}"></script>
+
+  <style>
+  .vdp-datepicker input {
+    border-radius: 0;
+    width: 100%;
+    position: relative;
+    min-height: 1px;
+    float: left;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+  }
+  .map{
+		width: 100%;
+		height: calc(100vh - 55px);
+    }
+    .mini_popUp-img {
+	    border-radius: 50%;
+	    width: 50px;
+	}
+
+	.mini_popUp-wrapper {
+	    display: flex;
+	}
+
+	.mini_popUp-body-wrapper-helper p {
+	    margin: 0;
+	    margin-bottom: 2px;
+	    font-size: 13px;
+	    font-weight: 400;
+	}
+
+	.mini_popUp-img-wrapper-helper {
+	    margin-right: 10px;
+	}
+
+	.mini_popUp-body-wrapper-helper h2 {
+	    margin-bottom: 4px;
+	    font-size: 16px;
+	}
+
+	.mini_popUp-btn {
+	    background: #e3e3e3;
+	    padding: 6px 12px;
+	    width: 100px;
+	    text-align: center;
+	    display: block;
+	    border-radius: 14px;
+	    margin-top: 15px;
+	    margin-bottom: 5px;
+	    cursor: pointer;
+	}
+	.mini_popUp-btn:hover {
+	    background: #cecece;
+	}
+
+	.mini_popUp-body-wrapper {
+	    min-width: 154px;
+	}
+
+	.pac-container {
+    background-color: #FFF;
+    z-index: 1070;
+    position: fixed;
+    display: inline-block;
+    float: left;
+	}
+	
+  </style>
+{% endblock %}

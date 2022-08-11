@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="./../">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Intranet de Pedidos de productos terminados">
+  <meta name="author" content="BSH">
+  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+  {% if title %}
+    <title>{{ title }} &mdash;   </title>
+  {% else %}
+    <title>  </title>
+  {% endif %}
+  <link rel="icon" type="image/ico" href="/favicon.ico" sizes="any" />
+  <!-- Icons-->
+  <link href="/vendor/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <link href="/vendor/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+  <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <!-- Main styles for this application-->
+  <link href="/vendor/custom/css/style.css" rel="stylesheet">
+  <link href="/vendor/pace-progress/css/pace.min.css" rel="stylesheet">
+
+  <link href="/vue-datetime.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+  <script type="text/javascript" src="/vue.js?v={{version}}"></script>
+    <!-- Custom Theme Style -->
+    <link href="/dashboard-x/build/css/custom.min.css" rel="stylesheet">
+    <link href="/vue-treeselect.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/vue.js?v={{version}}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+      .hidden-class{
+        visibility: hidden;
+        height: 0;
+        width: 0;
+      }
+      .general-message.is-success.is-small-popup {
+        max-width: 162px;
+        z-index: 1075;
+      }
+      .general-message {
+        background: white;
+        max-width: 260px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 2px 4px 13px 0px rgba(0,0,0,0.29);
+        left: 50%;
+        top: 50%;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        z-index: 1070;
+        padding: 30px;
+      }
+      .is-small-popup h2.general-message-title.load-points-animation {
+          color: #2A3F54;
+      }
+      .load-points-animation span {
+        -webkit-animation-name: blink;
+        animation-name: blink;
+        -webkit-animation-duration: 1.4s;
+        animation-duration: 1.4s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+      .captureClient_component-black_blanket {
+        z-index: 1054;
+        background: #151515ba;
+        left: 0;
+        right: 0;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+      }
+      .form-group .btn {
+            margin-bottom: 5px;
+      }
+      body{
+          font-family: Arial,"Helvetica Neue",Roboto,"Droid Sans",sans-serif;
+          color: #424242;
+      }
+      .h1, .h2, .h3, h1, h2, h3 {
+            color: #424242;
+      }
+    </style>
+  <style>
+
+       /* Buttons */
+
+       button.btn.btn-info.btn-xs{
+    color: #ffffff;
+    margin: 5px;
+    }
+
+    label.btn.btn-warning.btn-xs {
+     color: white;
+    }
+
+    button.btn.btn-warning.btn-xs{
+    color: #ffffff;
+    margin: 5px;
+    }
+
+    button.btn.btn-danger.btn-xs{
+    color: #ffffff;
+    margin: 5px;
+    }
+
+    a.btn.btn-success.btn-xs{
+    border-color: transparent;
+    margin: 5px;
+    }
+
+    /* Buttons */
+
+
+
+  .sidebar {
+      background: #2861b5;
+  }
+
+  .sidebar .nav-link.active {
+    background: #20a8d8;
+  }
+  .sidebar .nav-link:hover {
+      color: #fff;
+      background: #20a8d8;
+  }
+  .sidebar .nav-dropdown.open {
+    background: rgba(0, 0, 0, 0.0);
+  }
+  main.main {
+      background-color: #f1f1f1;
+  }
+  .sidebar .nav-link .nav-icon {
+    color: #FFFFFF;
+  }
+
+  .is-small-popup h2.general-message-title.load-points-animation {
+      color: #2A3F54;
+  }
+  .load-points-animation span {
+      -webkit-animation-name: blink;
+      animation-name: blink;
+      -webkit-animation-duration: 1.4s;
+      animation-duration: 1.4s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+  }
+  .captureClient_component-black_blanket {
+      z-index: 1054;
+      background: #151515ba;
+      left: 0;
+      right: 0;
+      position: fixed;
+      bottom: 0;
+      top: 0;
+  }
+  .card-header{
+    margin: -10px -17px 0px -17px;
+  }
+  </style>
+
+  <style>
+      h1, h2, h3, h4 {
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+    display: inline-block;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 11px 0;
+  }
+  .card-header h2 {
+    margin: 10px 0 0px;
+    float: left;
+    display: block;
+}
+  .general-message {
+      background: white;
+      max-width: 260px;
+      width: 100%;
+      border-radius: 5px;
+      box-shadow: 2px 4px 13px 0px rgba(0,0,0,0.29);
+      left: 50%;
+      top: 50%;
+      position: fixed;
+      transform: translate(-50%, -50%);
+      z-index: 1070;
+      padding: 30px;
+  }
+  .is-small-popup h2.general-message-title.load-points-animation {
+      color: #2A3F54;
+  }
+  .load-points-animation span {
+      -webkit-animation-name: blink;
+      animation-name: blink;
+      -webkit-animation-duration: 1.4s;
+      animation-duration: 1.4s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+  }
+  .captureClient_component-black_blanket {
+      z-index: 1054;
+      background: #151515ba;
+      left: 0;
+      right: 0;
+      position: fixed;
+      bottom: 0;
+      top: 0;
+  }
+    </style>
+   
+    {% if title %}
+      <title>{{ title }} &mdash; Byclo+</title>
+    {% else %}
+      <title>Byclo+</title>
+    {% endif %}
+  </head>
+
+  <body class="nav-md" style="
+    background-color: #2A3F54;
+    color: #2A3F54;
+    background: #2A3F54;
+    font-family: &quot;Helvetica Neue&quot;,Roboto,Arial,&quot;Droid Sans&quot;,sans-serif!important;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+">
+  <div id="preloadpage">
+    <div class="general-message is-success is-small-popup">
+      <h2 class="general-message-title load-points-animation">Cargando<span>.</span><span>.</span><span>.</span></h2>
+    </div>
+    <div class="captureClient_component-black_blanket"></div>
+  </div>
+    <div class="container body">
+      <div class="main_container">
+
+
+       
+        <!-- page content -->
+        <div  role="main" style="padding-top: 50px;">
+          <div class="">
+            <div class="clearfix"></div>
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+
+    
+      </div>
+    </div>
+  <script>
+    window.INITIAL_STATE = {{ initialState | safe }};
+    console.log('window.INITIAL_STATE: ', window.INITIAL_STATE.id)
+    window.addEventListener("storage", function () {
+            window.sessionStorage.clear()
+        }, false);
+  </script>
+
+  <script src="/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/vendor/popper.js/dist/umd/popper.min.js"></script>
+  <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/vendor/pace-progress/pace.min.js"></script>
+  <script src="/vendor/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+  <script src="/vendor/@coreui/coreui/dist/js/coreui.min.js"></script>
+  <!-- after the shim is referenced, add the library -->
+  <!--script type="text/javascript" src="/dashboard-x/build/js/xlsx.full.min.js"></script-->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> <!--GRAFICOS-->
+  <!--Prueba-->
+  {% block scripts %}{% endblock %}
+  <script src="/index.js?v={{version}}"></script>
+      <script>
+      document.getElementById("preloadpage").style.display = "none";
+      function activateLoad () {
+        document.getElementById("preloadpage").style.display = "";
+      }
+    </script>
+  </body>
+  <style>
+
+
+    .nav.side-menu>li.active>a {
+        text-shadow: rgba(0,0,0,.25) 0 -1px 0;
+        background: #198ac8;
+        box-shadow: rgba(0,0,0,.25) 0 1px 0, inset rgba(255,255,255,.16) 0 1px 0;
+    }
+
+    .nav_title {
+        background: #198ac8;
+    }
+
+    .nav-md ul.nav.child_menu li:before {
+        background: white;
+    }
+
+    .nav-md ul.nav.child_menu li:after {
+        border-left: 1px solid #fff;
+    }
+    body .container.body .right_col {
+    background: #198ac8;
+   }
+  </style>
+</html>

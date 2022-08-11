@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300,800" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/isotipo.png">
+    <!-- Bootstrap -->
+    <link href="/dashboard-x/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/dashboard-x/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/dashboard-x/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="/dashboard-x/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- FullCalendar -->
+    <link href="/dashboard-x/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+    <!-- datatables.net -->
+    <link href="/dashboard-x/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/vue-datetime.css" rel="stylesheet">
+    
+    <!-- Custom Theme Style -->
+    <link href="/dashboard-x/build/css/custom.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/vue.js?v={{version}}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    .hidden-class{
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
+    .general-message.is-success.is-small-popup {
+      max-width: 162px;
+      z-index: 1075;
+  }
+  .general-message {
+      background: white;
+      max-width: 260px;
+      width: 100%;
+      border-radius: 5px;
+      box-shadow: 2px 4px 13px 0px rgba(0,0,0,0.29);
+      left: 50%;
+      top: 50%;
+      position: fixed;
+      transform: translate(-50%, -50%);
+      z-index: 1070;
+      padding: 30px;
+  }
+  .is-small-popup h2.general-message-title.load-points-animation {
+      color: #2A3F54;
+  }
+  .load-points-animation span {
+      -webkit-animation-name: blink;
+      animation-name: blink;
+      -webkit-animation-duration: 1.4s;
+      animation-duration: 1.4s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+  }
+  .captureClient_component-black_blanket {
+      z-index: 1054;
+      background: #151515ba;
+      left: 0;
+      right: 0;
+      position: fixed;
+      bottom: 0;
+      top: 0;
+  }
+    </style>
+    {% include "../globaljs.html" %}
+    {% if title %}
+      <title>{{ title }} &mdash; Byclo+</title>
+    {% else %}
+      <title>Byclo+</title>
+    {% endif %}
+  </head>
+
+  <body class="nav-md" style="
+    background-color: #2A3F54;
+    color: #2A3F54;
+    background: #2A3F54;
+    font-family: &quot;Helvetica Neue&quot;,Roboto,Arial,&quot;Droid Sans&quot;,sans-serif!important;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+">
+  <div id="preloadpage">
+    <div class="general-message is-success is-small-popup">
+      <h2 class="general-message-title load-points-animation">Cargando<span>.</span><span>.</span><span>.</span></h2>
+    </div>
+    <div class="captureClient_component-black_blanket"></div>
+  </div>
+    <div class="container body">
+      <div class="main_container">
+
+
+       
+        <!-- page content -->
+        <div  role="main">
+          <div class="">
+            <div class="clearfix"></div>
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+
+    
+      </div>
+    </div>
+    <script>
+      window.INITIAL_STATE = {{ initialState | safe }};
+    </script>
+
+    <script type="text/javascript"  src="/dashboard-x/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery -->
+    <!-- Bootstrap -->
+    <script type="text/javascript"  src="/dashboard-x/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script type="text/javascript"  src="/dashboard-x/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script type="text/javascript"  src="/dashboard-x/vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script type="text/javascript"  src="/dashboard-x/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script type="text/javascript"  src="/dashboard-x/vendors/iCheck/icheck.min.js"></script>
+    <!-- fullcalendar -->
+    <script type="text/javascript"  src="/dashboard-x/vendors/moment/min/moment.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/fullcalendar/dist/lang-all.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/fullcalendar/dist/lang/es.js"></script>
+    <!-- datatables.net -->
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/jszip/dist/jszip.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script type="text/javascript"  src="/dashboard-x/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="/dashboard-x/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="/dashboard-x/build/js/custom.js"></script>
+    {% block scripts %}{% endblock %}
+    <script>
+      document.getElementById("preloadpage").style.display = "none";
+      function activateLoad () {
+        document.getElementById("preloadpage").style.display = "";
+      }
+    </script>
+  </body>
+  <style>
+
+
+    .nav.side-menu>li.active>a {
+        text-shadow: rgba(0,0,0,.25) 0 -1px 0;
+        background: #198ac8;
+        box-shadow: rgba(0,0,0,.25) 0 1px 0, inset rgba(255,255,255,.16) 0 1px 0;
+    }
+
+    .nav_title {
+        background: #198ac8;
+    }
+
+    .nav-md ul.nav.child_menu li:before {
+        background: white;
+    }
+
+    .nav-md ul.nav.child_menu li:after {
+        border-left: 1px solid #fff;
+    }
+    body .container.body .right_col {
+    background: #198ac8;
+   }
+  </style>
+</html>
