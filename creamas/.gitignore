@@ -1,0 +1,8 @@
+.vscode
+.env
+.vscode
+node_modules/
+data/
+assets/index.js
+assets/bundles/
+.vscode/

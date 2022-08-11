@@ -1,0 +1,11 @@
+{
+  "apps" : [{
+    "name"         : "crea-web",
+    "script"       : "src/server.js",
+    "watch"        : "src",
+    "watch_options": {
+      "usePolling" : true
+    },
+    "autorestart": false,
+  }]
+}

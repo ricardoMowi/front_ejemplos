@@ -1,0 +1,17 @@
+{% extends "../layout/layout.html" %}
+
+{% block content %}
+<div id="rolesContainerMount">
+</div>
+<link href="/vue-treeselect.min.css" rel="stylesheet">
+<style>
+.vue-treeselect__control {
+  border: 1px solid #ccc;
+  border-radius: 0px;
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="/bundles/rap.js?v={{version}}"></script>
+{% endblock %}

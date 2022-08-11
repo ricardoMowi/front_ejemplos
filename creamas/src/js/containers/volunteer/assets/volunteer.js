@@ -1,0 +1,45 @@
+import Vue from 'vue';
+import validateMount from '../../../utilities/validateMount';
+import VuePaginate from 'vue-paginate';
+import VeeValidate from 'vee-validate';
+
+
+Vue.use(VuePaginate);
+Vue.use(VeeValidate);
+
+import SolicitudInasistenciaContainer from './../solicitudInasistencia.vue';
+validateMount(SolicitudInasistenciaContainer,'SolicitudInasistenciaContainerMount')(Vue);
+import studentAttendanceContainer from './../studentAttendance.vue';
+validateMount(studentAttendanceContainer,'studentAttendanceContainerMount')(Vue);
+import listAlumnsContainer from './../listAlumns.vue';
+validateMount(listAlumnsContainer,'listAlumnsContainerMount')(Vue);
+import lastAtendanceByVolunteerContainer from './../lastAtendanceByVolunteer.vue';
+validateMount(lastAtendanceByVolunteerContainer,'lastAtendanceByVolunteerContainerMount')(Vue);
+import exportResultsByPendingAssignmentContainer from './../exportResultsByPendingAssignment.vue';
+validateMount(exportResultsByPendingAssignmentContainer,'exportResultsByPendingAssignmentContainerMount')(Vue);
+import roomsManagementContainer from './../roomsManagement.vue';
+validateMount(roomsManagementContainer,'roomsManagementContainerMount')(Vue);
+import exportResultsByPenddingAssignmentWorkshopContainer from './../exportResultsByPenddingAssignmentWorkshop.vue';
+validateMount(exportResultsByPenddingAssignmentWorkshopContainer,'exportResultsByPenddingAssignmentWorkshopContainerMount')(Vue);
+import SolicitudConstanciaContainer from './../solicitudConstancia.vue';
+validateMount(SolicitudConstanciaContainer,'SolicitudConstanciaContainerMount')(Vue);
+import SilabusContainer from './../silabus.vue';
+validateMount(SilabusContainer,'SilabusContainerMount')(Vue);
+import KitPedagogicoContainer from './../kitPedagogico.vue';
+validateMount(KitPedagogicoContainer,'KitPedagogicoContainerMount')(Vue);
+import MiEquipoContainer from './../miEquipo.vue';
+validateMount(MiEquipoContainer,'MiEquipoContainerMount')(Vue);
+import MiAsistenciaContainer from './../miAsistencia.vue';
+validateMount(MiAsistenciaContainer,'MiAsistenciaContainerMount')(Vue);
+import ColegioAsignadoContainer from './../colegioAsignado.vue';
+validateMount(ColegioAsignadoContainer,'ColegioAsignadoContainerMount')(Vue);
+import SchoolLeadersContainer from './../schoolLeaders.vue';
+validateMount(SchoolLeadersContainer,'SchoolLeadersMount')(Vue);
+import GuiasDeClaseContainer from './../guiasDeClase.vue';
+validateMount(GuiasDeClaseContainer,'GuiasDeClaseContainerMount')(Vue);
+import GestionarDocentesContainer from './../gestionarDocentes.vue';
+validateMount(GestionarDocentesContainer,'GestionarDocentesContainerMount')(Vue);
+import EvaluarSolicitudRotacionCreandoContainer from './../evaluarSolicitudRotacionCreando.vue';
+validateMount(EvaluarSolicitudRotacionCreandoContainer,'EvaluarSolicitudRotacionCreandoContainerMount')(Vue);
+import detalleTallerContainer from './../detalleTaller.vue';
+validateMount(detalleTallerContainer,'DetalleTallerContainerMount')(Vue);

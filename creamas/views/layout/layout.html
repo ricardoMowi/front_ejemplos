@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="./../">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <!-- <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+  <meta name="author" content="Łukasz Holeczek">
+  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard"> -->
+  {% if title %}
+    <title>{{ title }} &mdash; CREA+</title>
+  {% else %}
+    <title>CREA+</title>
+  {% endif %}
+  <link rel="icon" type="image/ico" href="./favicon.ico" sizes="any" />
+  <!-- Icons-->
+  <link href="/vendor/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <link href="/vendor/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+  <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <!-- Main styles for this application-->
+  <link href="/vendor/custom/css/style.css" rel="stylesheet">
+  <link href="/vendor/pace-progress/css/pace.min.css" rel="stylesheet">
+
+  <link href="/orgchart.css" rel="stylesheet">
+
+  <link href="/vue-datetime.css" rel="stylesheet">
+  <script type="text/javascript" src="/vue.js?v={{version}}"></script>
+    <!-- Custom Theme Style -->
+    <link href="/dashboard-x/build/css/custom.min.css" rel="stylesheet">
+    <link href="/vue-treeselect.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/vue.js?v={{version}}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+      .vue-treeselect__label {
+        /* background-color: black; */
+        text-align: start;
+      }
+      .hidden-class{
+        visibility: hidden;
+        height: 0;
+        width: 0;
+      }
+      .general-message.is-success.is-small-popup {
+        max-width: 162px;
+        z-index: 1075;
+      }
+      .general-message {
+        background: white;
+        max-width: 260px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 2px 4px 13px 0px rgba(0,0,0,0.29);
+        left: 50%;
+        top: 50%;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        z-index: 1070;
+        padding: 30px;
+      }
+      .is-small-popup h2.general-message-title.load-points-animation {
+          color: #2A3F54;
+      }
+      .load-points-animation span {
+        -webkit-animation-name: blink;
+        animation-name: blink;
+        -webkit-animation-duration: 1.4s;
+        animation-duration: 1.4s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+      .captureClient_component-black_blanket {
+        z-index: 1054;
+        background: #151515ba;
+        left: 0;
+        right: 0;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+      }
+      .form-group .btn {
+            margin-bottom: 5px;
+      }
+      body{
+          font-family: Arial,"Helvetica Neue",Roboto,"Droid Sans",sans-serif;
+          color: #424242;
+      }
+      .h1, .h2, .h3, h1, h2, h3 {
+            color: #424242;
+      }
+    </style>
+  <style>
+
+       /* Buttons */
+
+       button.btn.btn-info.btn-xs{
+    color: #ffffff;
+    margin: 5px;
+    }
+
+    label.btn.btn-warning.btn-xs {
+     color: white;
+    }
+
+    button.btn.btn-warning.btn-xs{
+    color: #ffffff;
+    margin: 5px;
+    }
+
+    button.btn.btn-danger.btn-xs{
+    color: #ffffff;
+    margin: 5px;
+    }
+
+    a.btn.btn-success.btn-xs{
+    border-color: transparent;
+    margin: 5px;
+    }
+
+    /* Buttons */
+
+  h1, h2, h3, h4 {
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+    display: inline-block;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 11px 0;
+  }
+  .card-header {
+    padding: 5px 10px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    .v-step-item-label{
+      text-align: center;
+    }
+  }
+
+  .card-header h2 {
+    margin: 0px;
+    float: left;
+    display: block;
+  }
+
+  @media (max-width: 1200px) {
+    .card-header h2 {
+        width: 100%;
+        white-space: pre-wrap;
+        font-size: 17px
+    }
+  }
+  .main .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .card-header-actions {
+      display: inline-block;
+      float: right;
+      margin: 5px 0 0px;
+  }
+  .control-label {
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+    text-align: left;
+  }
+  @media (min-width: 576px){
+      .control-label {
+        text-align:right;
+      }
+  }
+
+  .form-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .sidebar {
+      background: #0059A8;
+  }
+
+  .sidebar .nav-link.active {
+    background: #1e61ac;
+  }
+  .sidebar .nav-link:hover {
+      color: #fff;
+      background: #1e61ac;
+  }
+  .sidebar .nav-dropdown.open {
+    background: rgba(0, 0, 0, 0.0);
+  }
+  main.main {
+      background-color: #f1f1f1;
+  }
+  .sidebar .nav-link .nav-icon {
+    color: #FFFFFF;
+  }
+
+  .is-small-popup h2.general-message-title.load-points-animation {
+      color: #2A3F54;
+  }
+  .load-points-animation span {
+      -webkit-animation-name: blink;
+      animation-name: blink;
+      -webkit-animation-duration: 1.4s;
+      animation-duration: 1.4s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+  }
+  .captureClient_component-black_blanket {
+      z-index: 1054;
+      background: #151515ba;
+      left: 0;
+      right: 0;
+      position: fixed;
+      bottom: 0;
+      top: 0;
+  }
+  .blue {
+    background-color: #0059A8
+  }
+  .whiteFont {
+    color: #FFFFFF
+  }
+  </style>
+</head>
+
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+  <header class="app-header navbar">
+    <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <ul class="nav navbar-nav ml-auto">
+
+
+
+      <li class="nav-item d-md-down-none">
+        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Hola, {{name}}
+            <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
+                <img
+                  id="mypic"
+                  src="{{imageUrl}}"
+                  class="rounded-circle z-depth-0"
+                  alt="avatar image"
+                  height="35"
+                  width= "35px";
+                  object-fit= "cover";
+                />
+              </mdb-dropdown-toggle>
+
+          <span class="fa fa-angle-down"></span>
+
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-header text-center">
+            <strong>Account</strong>
+          </div>
+
+          <a class="dropdown-item" href="/dashboard/logout">
+            <i class="fa fa-lock"></i> Logout</a>
+        </div>
+      </li>
+    </ul>
+
+  </header>
+  <div class="app-body">
+    <div class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="logo-container">
+          <img class="navbar-brand-full" src="/LogoCrea.png" width="93.6" height="90" alt="CoreUI Logo">
+        </div>
+        <ul class="nav">
+
+          <!--Inicio Escritorio-->
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link" href="/dashboard/escritorio">
+              <i class="nav-icon fa fa-desktop"></i>Escritorio
+            </a>
+          </li>
+          <!--Fin Escritorio-->
+
+          <!--Inicio Crea+ en el Peru-->         
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+              <i class="nav-icon fa fa-sitemap"></i>Crea+ en el Perú</a>
+
+            <ul class="nav-dropdown-items">
+                
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/liderescrea">
+                      <i class="nav-icon icon-circle"></i>Líderes crea+
+                    </a>
+                </li> -->
+              
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/colegiosnivelnacional">
+                      <i class="nav-icon icon-circle"></i>Colegios a nivel nacional
+                    </a>
+                </li> -->
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/cancionerocrea">
+                      <i class="nav-icon icon-circle"></i>Cancionero Crea+
+                    </a>
+                </li>
+               
+            </ul>
+          </li>        
+          <!--Fin Crea+ en el Peru-->
+
+          <!--Seccion Colegio-->
+          {% if verifyMenu('MY_ATTENDANCE','ASSIGNED_SCHOOL','LEADERS_IN_SCHOOL','MY_TEAM','PEDAGOGICAL_KIT','STUDENT_ATTENDANCE','STUDENT_LIST','CLASS_GUIDES','CLASS_ROUTES','BBDD_SCHOOL','BIRTHDAY','ROTATION_REQUEST_MANAGEMENT','ATTENDANCE_REQUEST_MANAGEMENT','CLASSROOMS_MANAGEMENT','STUDENT_ENROLLMENT','INDICATORS')  %}  
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon fa fa-home"></i>Colegio</a>
+              <ul class="nav-dropdown-items">
+                {% if verifyMenu('MY_ATTENDANCE')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/miasistencia">
+                    <i class="nav-icon icon-circle"></i>Mi asistencia
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('ASSIGNED_SCHOOL')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/colegioasignado">
+                    <i class="nav-icon icon-circle"></i>Colegio asignado
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('LEADERS_IN_SCHOOL')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/lideresColegio">
+                     <i class="nav-icon icon-circle"></i>Líderes del colegio
+                   </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('MY_TEAM')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/miequipo">
+                    <i class="nav-icon icon-circle"></i>Mi equipo
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('PEDAGOGICAL_KIT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/kitpedagogico">
+                    <i class="nav-icon icon-circle"></i>Kit Pedagógico
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('STUDENT_ATTENDANCE')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/attendanceStudents">
+                    <i class="nav-icon icon-circle"></i>Asistencia de alumnos
+                  </a>
+                </li>
+                {% endif %} 
+                {% if verifyMenu('STUDENT_LIST')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/listAlumnos">
+                    <i class="nav-icon icon-circle"></i>Lista de alumnos
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('CLASS_GUIDES')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/guiasDeClase">
+                    <i class="nav-icon icon-circle"></i>Guías de clase
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('CLASS_ROUTES')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/silabus">
+                    <i class="nav-icon icon-circle"></i>Ruta de clase
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('BBDD_SCHOOL')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/gestionardocentes">
+                    <i class="nav-icon icon-circle"></i>BBDD Equipo
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('BIRTHDAY')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/cumpleanios">
+                    <i class="nav-icon icon-circle"></i>Cumpleaños
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('ROTATION_REQUEST_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/evaluarSolicitudRotacionCreando">
+                    <i class="nav-icon icon-circle"></i>Gestionar solicitudes de Rotación
+                   </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('CLASSROOMS_MANAGEMENT')  %}              
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/gestionSalones">
+                    <i class="nav-icon icon-circle"></i>Gestionar salones
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('STUDENT_ENROLLMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/matriculaEstudiantes">
+                    <i class="nav-icon icon-circle"></i>Matricular Estudiante
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('INDICATORS')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/indicadoresGDC">
+                    <i class="nav-icon icon-circle"></i>Indicadores
+                  </a>
+                </li>
+                {% endif %}     
+                {% if verifyMenu('ATTENDANCE_REQUEST')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/solicitudInasistencia">
+                    <i class="nav-icon icon-circle"></i>Solicitudes de regularización de asistencia
+                  </a>
+                </li>
+                {% endif %}    
+                {% if verifyMenu('SILABUS')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/silabus">
+                    <i class="nav-icon icon-circle"></i>Sílabus
+                  </a>
+                </li>
+                {% endif %}   
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/detalleTaller">
+                    <i class="nav-icon icon-circle"></i>Detalle Taller
+                  </a>
+                </li>
+              </ul>
+          </li>
+          {% endif %}   
+          <!--Fin Seccion Colegio-->
+
+          <!--Inicio Impacto-->
+          {% if verifyMenu('PENDING_EVALUATIONS','FOCUSED_RECRUITMENT','RECRUITMENT_EVENT_MANAGEMENT','RECRUITMENT_REPORT','CREANDO_RX','CREANDO_RX_READ','WORKSHOP_ROUTE','LESSONS_MANAGEMEMNT','ATTENDANCE_REQUEST','LOCALS_MANAGEMENT','SIGANTURE_MANAGEMENT','CONSTANCY_REQUEST_MANAGEMENT')  %}  
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon fa fa-bolt"></i>Impacto</a>
+              <ul class="nav-dropdown-items">
+                {% if verifyMenu('PENDING_EVALUATIONS')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/evapendiente">
+                    <i class="nav-icon icon-circle"></i>Eva Pendientes
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('FOCUSED_RECRUITMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/focoreclu">
+                    <i class="nav-icon icon-circle"></i>Reclu Focalizado
+                  </a>
+                </li>
+                {% endif %}   
+                <!-- {% if verifyMenu('RECRUITMENT_EVENT_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/crearcharla">
+                    <i class="nav-icon icon-circle"></i>Charlas Reclutamiento
+                  </a>
+                </li>
+                {% endif %}    -->
+                {% if verifyMenu('RECRUITMENT_REPORT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/reporteReclu">
+                    <i class="nav-icon icon-circle"></i>Reporte Reclutamiento
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('CREANDO_RX')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/creandorx">
+                    <i class="nav-icon icon-circle"></i>Radiografía Creando
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('CREANDO_RX_READ')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/creandorxLectura">
+                    <i class="nav-icon icon-circle"></i>Radiografía Creando (lectura)
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('WORKSHOP_ROUTE')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/rutaTalleres">
+                    <i class="nav-icon icon-circle"></i>Ruta de talleres
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('LESSONS_MANAGEMEMNT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/adminclases">
+                    <i class="nav-icon icon-circle"></i>Nombrar Salones
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('CONSTANCY_REQUEST_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/evaluarSolicitudConstancia">
+                    <i class="nav-icon icon-circle"></i>Gestionar solicitudes de constancia
+                  </a>
+                </li>
+                {% endif %}  
+                {% if verifyMenu('ATTENDANCE_REQUEST_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/evaluarSolicitudInasistencia">
+                    <i class="nav-icon icon-circle"></i>Gestionar regularizaciones de inasistencias
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('LOCALS_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/managementLocals">
+                    <i class="nav-icon icon-circle"></i>Gestión de locales
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('SIGANTURE_MANAGEMENT')  %}                
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/gestionarFirmas">
+                    <i class="nav-icon icon-circle"></i>Gestionar firmas
+                  </a>
+                </li>  
+                {% endif %}   
+              </ul>
+          </li>
+          {% endif %}   
+          <!--Fin Impacto-->
+
+          <!--Inicio GDC-->
+          {% if verifyMenu('SCHOOL_CALENDAR','INDICATORS_MANAGEMENT','ASSIGN_ROLE_SCHOOL','ASSING_WORKSHOP','ASSIGN_TEACHER','CREANDO_SCHOOL','CLASS_MATERIAL','IMPROVEMENTS_REQUEST_MANAGEMENT','REPORTS_XLS', 'PROJECTS_MANAGEMENT')  %}  
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon fa fa-clock-o"></i>GDP</a>
+              <ul class="nav-dropdown-items">
+                {% if verifyMenu('SCHOOL_CALENDAR')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/calendarioGDC">
+                    <i class="nav-icon icon-circle"></i>Cronograma proyectos
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('INDICATORS_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/indicadoresGDCAdmin">
+                    <i class="nav-icon icon-circle"></i>Admin indicadores
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('ASSIGN_ROLE_SCHOOL')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/asignacionCreandos">
+                    <i class="nav-icon icon-circle"></i>Asignar creandos
+                  </a>
+                </li>
+                {% endif %}   
+                <!-- {% if verifyMenu('ASSING_WORKSHOP')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/pendienteAsignacionTalleres">
+                    <i class="nav-icon icon-circle"></i>Asignar taller
+                  </a>
+                </li>  
+                {% endif %} -->
+                {% if verifyMenu('PROJECTS_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/masterProjects">
+                    <i class="nav-icon icon-circle"></i>Gestionar Proyectos
+                  </a>
+                </li>  
+                {% endif %}  
+                <!-- {% if verifyMenu('ASSIGN_TEACHER')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/pendienteAsignacion">
+                    <i class="nav-icon icon-circle"></i>Asignar docentes
+                  </a>
+                </li> 
+                {% endif %}   -->
+                {% if verifyMenu('CREANDO_SCHOOL')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/asistenciaColegioSabado">
+                    <i class="nav-icon icon-circle"></i>Colegio Creando
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('CLASS_MATERIAL')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/materialesClases">
+                    <i class="nav-icon icon-circle"></i>Cargar guías de clase
+                  </a>
+                </li>
+                {% endif %}   
+                {% if verifyMenu('IMPROVEMENTS_REQUEST_MANAGEMENT')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/evaluarSolicitudMejoraWeb">
+                    <i class="nav-icon icon-circle"></i>Gestionar solicitudes de mejoras web
+                  </a>
+                </li>
+                {% endif %}  
+                {% if verifyMenu('REPORTS_XLS')  %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/reportesExcel">
+                    <i class="nav-icon icon-circle"></i>Reportes XLS
+                  </a>
+                </li>
+                {% endif %}   
+              </ul>
+          </li>
+          {% endif %}   
+          <!--Fin GDC-->
+          
+          <!--Inicio Convocatoria a creandos-->
+          {% if verifyMenu('ANNOUNCEMENT_CREANDOS')  %}  
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon fa fa-pencil-square-o"></i>Convocatoria a Creandos</a>
+          </li>
+          {% endif %}    
+          <!--Fin Convocatoria a creandos-->
+         
+          <!--Inicio Innovación y desarrollo-->
+          {% if verifyMenu('IMPROVEMENTS_REQUEST','ACADEMIC_WORKS') %}
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+              <i class="nav-icon fa fa-gears"></i>Innovación & Desarrollo</a>
+            <ul class="nav-dropdown-items">
+              {% if verifyMenu('IMPROVEMENTS_REQUEST') %}
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/solicitudMejorasWeb">
+                  <i class="nav-icon icon-circle"></i> Mejoras web
+                </a>
+              </li>
+              {% endif %}
+              {% if verifyMenu('ACADEMIC_WORKS') %}
+              <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/solicitudMejorasWeb">
+                    <i class="nav-icon icon-circle"></i>  Trabajos académicos
+                  </a>
+              </li>
+              {% endif %}
+            </ul>
+          </li>
+          {% endif %}
+          <!--Fin Innovación y desarrollo-->
+
+          <!--Inicio Tienda-->          
+          <!-- <li class="nav-item">
+              <a class="nav-link" href="https://www.crearecuerdos.org/"  target="_newtab">
+                <i class="nav-icon fa fa-thumb-tack"></i>Tienda
+              </a>
+          </li>           -->
+          <!--Fin Tienda-->
+          
+          <!--Inicio Recursos digitales-->
+          {% if verifyMenu('DIGITAL_RESOURCES','REQUEST_CONSTANCY') %}  
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon fa fa-gears"></i>Recursos digitales</a>
+                <ul class="nav-dropdown-items">
+                    {% if verifyMenu('DIGITAL_RESOURCES') %} 
+                    <li class="nav-item">
+                      <a class="nav-link" href="/dashboard/recursosdigitales">
+                        <i class="nav-icon icon-circle"></i> Descargas Crea+
+                      </a>
+                    </li>
+                    {% endif %}
+                    {% if verifyMenu('REQUEST_CONSTANCY') %} 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/solicitudConstancia">
+                          <i class="nav-icon icon-circle"></i>Constancia de voluntariado
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+          </li>
+          {% endif %}
+          <!--Fin Recursos digitales-->
+          
+          <!--Inicio Configuración-->
+          {% if verifyMenu('CREANDOS_MANAGEMENT','ORGANIZATION_MANAGEMENT','ROLES_POSITION_MANAGEMENT','PAGES_MANAGEMENT','DESKTOP_MANAGEMENT') %}
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon fa fa-gear"></i>Configuración</a>
+              <ul class="nav-dropdown-items">
+                {% if verifyMenu('CREANDOS_MANAGEMENT') %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/admincreando">
+                    <i class="nav-icon icon-circle"></i>Admin. Creandos
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('ORGANIZATION_MANAGEMENT') %} 
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/adminOrganizaciones">
+                    <i class="nav-icon icon-circle"></i>Admin. Organizaciones
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('ROLES_MANAGEMENT') %} 
+                <li class="nav-item"> 
+                  <a class="nav-link" href="/dashboard/settings/roles">
+                    <i class="nav-icon icon-circle"></i>Roles y Cargos
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('PAGES_MANAGEMENT') %} 
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/settings/pages">
+                    <i class="nav-icon icon-circle"></i>Páginas
+                  </a>
+                </li>
+                {% endif %}
+                {% if verifyMenu('DESKTOP_MANAGEMENT') %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/AdmEscritorio">
+                    <i class="nav-icon icon-circle"></i>Gestión de escritorios
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+          </li>
+          {% endif %}
+          <!--Fin Configuración-->
+          
+          <!--Inicio Rendición contable-->
+          {% if verifyMenu('ACCOUNTING_ACCOUNTS','COST_CENTER','ACCOUNTING_PERIODS','ACCOUNTING_DECLARATION') %}
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+              <i class="nav-icon fa fa-money"></i>Rendición contable</a>
+            <ul class="nav-dropdown-items">
+              {% if verifyMenu('ACCOUNTING_ACCOUNTS') %}
+               <li class="nav-item">
+                  <a class="nav-link" href="/dashboard/adminCuentasContables">
+                      <i class="nav-icon icon-circle"></i>Cuentas Contables
+                  </a>
+               </li>
+              {% endif %}
+              {% if verifyMenu('COST_CENTER') %}
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/adminCentroDeCostos">
+                    <i class="nav-icon icon-circle"></i>Centro de costos
+                </a>
+              </li>
+              {% endif %}
+              {% if verifyMenu('ACCOUNTING_PERIODS') %}
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/adminPeriodosContables">
+                    <i class="nav-icon icon-circle"></i>Periodos contables
+                </a>
+              </li>
+              {% endif %}
+              {% if verifyMenu('ACCOUNTING_DECLARATION') %}
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/adminRendicionContable">
+                    <i class="nav-icon icon-circle"></i>Rendición contable
+                </a>
+              </li>
+              {% endif %}
+          </ul>
+          </li>
+          {% endif %}
+        <!--Fin Rendición contable -->
+
+        <!--Inicio Perfil-->
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/dashboard/participantes">
+            <i class="cil-birthday-cake"></i> Aniversario
+            <i class="nav-icon fa fa-birthday-cake"></i>Aniversario
+            <i class="fa fa-birthday-cake"></i>  Aniversario
+          </a>
+        </li> -->
+        <!--Fin Perfil-->
+
+
+        <!--Inicio Perfil-->
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/perfilCreando">
+            <i class="nav-icon icon-user"></i>Mi Perfil
+          </a>
+        </li>
+        <!--Fin Perfil-->
+        </ul>
+      </nav>
+    </div>
+
+    <main class="main">
+      <div style="
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;"></div>
+      <div class="container-fluid">
+        <div class="ui-view">
+          <div>
+            <div class="animated fadeIn">
+              {% block content %}{% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- CoreUI and necessary plugins-->
+  <script>
+    window.INITIAL_STATE = {{ initialState | safe }};
+    // console.log('window.INITIAL_STATE: ', window.INITIAL_STATE.id)
+    window.addEventListener("storage", function () {
+            window.sessionStorage.clear()
+        }, false);
+  </script>
+  <script src="/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/vendor/popper.js/dist/umd/popper.min.js"></script>
+  <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/vendor/pace-progress/pace.min.js"></script>
+  <script src="/vendor/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+  <script src="/vendor/@coreui/coreui/dist/js/coreui.min.js"></script>
+  <!-- after the shim is referenced, add the library -->
+  <!--script type="text/javascript" src="/dashboard-x/build/js/xlsx.full.min.js"></script-->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> <!--GRAFICOS-->
+  <!--Prueba-->
+  {% block scripts %}{% endblock %}
+
+</body>
+</html>

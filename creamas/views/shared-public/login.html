@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ title }} &mdash; CREA + </title>
+
+    <link href="/dashboard-x/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/dashboard-x/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/dashboard-x/build/css/custom.min.css" rel="stylesheet">
+    <style>
+      .hidden-class{
+        visibility: hidden;
+        height: 0;
+        width: 0;
+      }
+      .general-message.is-success.is-small-popup {
+        max-width: 162px;
+        z-index: 1075;
+      }
+      .general-message {
+        background: white;
+        max-width: 260px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 2px 4px 13px 0px rgba(0,0,0,0.29);
+        left: 50%;
+        top: 50%;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        z-index: 1070;
+        padding: 30px;
+      }
+      .is-small-popup h2.general-message-title.load-points-animation {
+          color: #2A3F54;
+      }
+      .load-points-animation span {
+        -webkit-animation-name: blink;
+        animation-name: blink;
+        -webkit-animation-duration: 1.4s;
+        animation-duration: 1.4s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+      .captureClient_component-black_blanket {
+        z-index: 1054;
+        background: #151515ba;
+        left: 0;
+        right: 0;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+      }
+      .form-group .btn {
+            margin-bottom: 5px;
+      }
+      body{
+          font-family: Arial,"Helvetica Neue",Roboto,"Droid Sans",sans-serif;
+          color: #424242;
+      }
+      .h1, .h2, .h3, h1, h2, h3 {
+            color: #424242;
+      }
+    </style>
+</head>
+<body class="login">
+  <div id="preloadpage">
+    <div class="general-message is-success is-small-popup">
+      <h2 class="general-message-title load-points-animation">Cargando<span>.</span><span>.</span><span>.</span></h2>
+    </div>
+    <div class="captureClient_component-black_blanket"></div>
+  </div>
+  <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div id="vueLogin" class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+
+                  <center>
+                      <img src="/LogoCrea.png" alt="img" class="img-responsive" width="200" heigth="100">
+                  </center>
+                  <div>
+                    <h5>Talento Creando Cambio </h5>
+                  </div>
+              <div class="separator"></div>
+              <form>
+              <h1>Inicio de sesión </h1>
+              <div>
+                <input v-model="form.documentNumber" type="text" class="form-control" placeholder="DNI" required="">
+              </div>
+              <div>
+                <input v-model="form.password" type="password" class="form-control" placeholder="Password" required="">
+              </div>
+              <div v-if="error!=''">
+                <p style="color:red" >${error}</p>
+              </div>
+              
+              <div class="row">
+                <a class="btn btn-default submit" v-on:click="login()">Ingresar</a>
+                <a v-if="idProject" class="btn btn-default submit" :href="`/dashboard/registroProject?idProject=${idProject}`">Regístrate aquí</a>
+              </div>
+              <br>
+              <div class="row">
+                <a  href="/dashboard/sendEmailToRecoverPassword/">¿Olvidaste tu contraseña?</a>
+              </div> 
+              <div class="clearfix"></div>
+                <div class="separator">
+                </div>
+            </form>
+          </section>
+        </div>
+      </div>
+
+      </div>
+
+
+
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC68nmXUGm6R5kmvtlpgEf-RZ1mEifbSPk&libraries=places" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@union/whatwg-fetch@2.0.4/fetch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/string-mask/0.3.0/string-mask.min.js"></script>
+
+
+<script>
+function consultServices(source,data,func) {
+
+  document.getElementById("preloadpage").style.display = "";
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+  let options = {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers,
+    body: JSON.stringify(data),
+  }
+  //console.log('INI FETCH--------------------------------------------------');
+  const result = fetch(`/${source}`, options)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("preloadpage").style.display = "none";
+      func(data);
+
+    //  console.log('INI 1--------------------------------------------------');
+    }).catch((err) => {
+
+      document.getElementById("preloadpage").style.display = "none";
+    //  console.log('INI 2--------------------------------------------------');
+    });
+
+}
+const vueLogin = new Vue({
+    		el:'#vueLogin',
+    		delimiters: ['${', '}'],
+    		data: {
+          form: {
+            password:'',
+            documentNumber:'',
+          },
+          error: '',
+          semester: {},
+          idProject: '',
+    		},
+    		async created () {
+          await this.getSemester();
+          const urlParams = new URLSearchParams(window.location.search); 
+          const myParam = urlParams.get('idProject');
+          console.log('idProject created: ', myParam)
+          if(myParam != null){
+            this.idProject = myParam
+          }
+    		},
+    		methods: {
+          getSemester: async function () {
+            var ctx = this;
+            await consultServices('getCurrentSemester', {}, function(result) {
+              ctx.semester = result;
+            })
+          },
+          login: async function () {
+            var ctx = this;
+            ctx.error = '';
+            if(this.form.password==''){
+              ctx.error='Todos los campos son obligatorios.'
+            }
+            if(this.form.documentNumber==''){
+              ctx.error='Todos los campos son obligatorios.'
+            }
+            if(ctx.error == ''){
+              this.form.semesterCode = this.semester.id;
+              await consultServices('login', this.form, function (result) {
+                const urlParams = new URLSearchParams(window.location.search); 
+                const myParam = urlParams.get('idProject');
+                result.tempIdProject = myParam
+                ctx.session = result
+                //ctx.session.tempIdProject = myParam //this.idProject
+
+                if(result.message){
+                  ctx.error = result.message;
+                }else{
+                  console.log('consultServices ctx: ', ctx)
+                  location.reload();
+                }//ctx.organizations = getOrganization;
+
+              })
+            }
+            
+          },
+          goToSignUp: async function () {
+            const urlParams = new URLSearchParams(window.location.search); 
+            const myParam = urlParams.get('idProject');
+            result.tempIdProject = myParam
+          }
+        }
+    	})
+    </script>
+    <script>
+      window.INITIAL_STATE = {{ initialState | safe }};
+      document.getElementById("preloadpage").style.display = "none";
+      function activateLoad () {
+        document.getElementById("preloadpage").style.display = "";
+      }
+    </script>
+  </body>
+</html>
